@@ -1,0 +1,281 @@
+/* --- Корневые переменные темы (оставляем твои) --- */
+:root {
+  --bg-main-dark: #161922;
+  --bg-sidebar-dark: #1c1f2e;
+  --bg-card-dark: #1c1f2e;
+  --text-main-dark: #bdc9d7;
+  --accent-blue: #3063ff;
+  --bg-sidebar-light: #ffffff;
+  --text-main-light: #484f59;
+  --card-radius: 20px;
+  --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  --font-sf: 'SF Pro Display', system-ui, -apple-system, sans-serif;
+  --font-fa: 'Font Awesome 6 Free';
+  --text-rendering: optimizeLegibility;
+  --base-font-size: 16px;
+  --base-line-height: calc(1ex / 0.32);
+  --theme-switch-delay: 300ms;
+}
+
+/* --- Базовые стили для всего тела страницы --- */
+body {
+  font-family: var(--font-sf);
+  font-size: var(--base-font-size);
+  line-height: var(--base-line-height);
+  text-rendering: var(--text-rendering);
+  letter-spacing: -0.02em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0 20px 40px; /* Отступы слева и справа для удобочитаемости */
+  background-color: var(--bg-sidebar-light);
+  color: var(--text-main-light);
+  transition: background-color var(--theme-switch-delay) ease, color var(--theme-switch-delay) ease;
+}
+
+/* --- Тёмная тема --- */
+.dark body {
+  background-color: var(--bg-main-dark);
+  color: var(--text-main-dark);
+}
+
+/* --- Стили заголовков --- */
+h1, h2, h3, h4 {
+  margin-top: 0;
+  color: inherit;
+  font-weight: 600;
+}
+
+/* --- Стили для ссылок --- */
+a {
+  color: var(--accent-blue);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover, a:focus {
+  color: #1e46cc;
+  text-decoration: underline;
+}
+
+/* --- Контейнеры и основные блоки --- */
+main {
+  max-width: 900px;
+  margin: 80px auto 40px; /* Центрируем контент, учитывая фиксированную шапку */
+  padding: 0 10px;
+}
+
+/* --- Для home.html --- */
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* --- Для форм (login.html, register.html) --- */
+form {
+  max-width: 400px;
+  margin: 20px auto;
+  background-color: var(--bg-card-dark);
+  padding: 30px;
+  border-radius: var(--card-radius);
+  box-shadow: var(--box-shadow);
+  color: inherit;
+  transition: background-color var(--theme-switch-delay) ease;
+}
+
+.dark form {
+  background-color: var(--bg-card-dark);
+  color: var(--text-main-dark);
+}
+
+.light form {
+  background-color: #fff;
+  color: var(--text-main-light);
+}
+
+/* Поля формы */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin: 8px 0 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  background-color: #fff;
+  color: #000;
+}
+
+.dark input[type="text"],
+.dark input[type="email"],
+.dark input[type="password"],
+.dark select,
+.dark textarea {
+  background-color: #2c2f43;
+  border-color: #444;
+  color: var(--text-main-dark);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--accent-blue);
+  outline: none;
+}
+
+/* Кнопки */
+button, .create-vps-btn {
+  background-color: var(--accent-blue);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  padding: 12px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+button:hover, .create-vps-btn:hover {
+  background-color: #1e46cc;
+}
+
+/* Ошибки и сообщения */
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 15px;
+  color: #f04747;
+}
+
+/* --- Специально для profile.html --- */
+.top-controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  padding: 15px 20px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: inherit;
+  z-index: 1000;
+  transition: background-color var(--theme-switch-delay) ease;
+}
+
+.lang-toggle img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+.lang-toggle img.active {
+  border-color: var(--accent-blue);
+}
+
+.theme-toggle, .lang-toggle, .notification-icon, .settings-icon {
+  cursor: pointer;
+  font-size: 20px;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.theme-toggle {
+  display: flex;
+  gap: 8px;
+}
+
+.theme-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.theme-btn.active {
+  border-color: var(--accent-blue);
+  background: var(--accent-blue);
+  color: white;
+}
+
+.theme-btn:hover {
+  background: rgba(48, 99, 255, 0.1);
+}
+
+.theme-btn i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+}
+
+/* Профиль - личный кабинет */
+.user-info {
+  max-width: 800px;
+  margin: 120px auto 40px;
+  padding: 1rem 20px;
+  border-top: 1px solid #ccc;
+  background-color: var(--bg-card-dark);
+  border-radius: var(--card-radius);
+  color: var(--text-main-dark);
+  transition: background-color var(--theme-switch-delay) ease;
+}
+.dark .user-info {
+  background-color: var(--bg-card-dark);
+  color: var(--text-main-dark);
+}
+.light .user-info {
+  background-color: #fff;
+  color: var(--text-main-light);
+}
+
+/* Адаптивность */
+@media (max-width: 600px) {
+  body {
+      padding: 0 10px 30px;
+  }
+  main {
+      margin: 100px 10px 30px;
+      padding: 0;
+  }
+  form {
+      padding: 20px;
+      width: 100%;
+  }
+  .top-controls {
+      padding: 10px 15px;
+      gap: 12px;
+  }
+  .theme-btn {
+      width: 32px;
+      height: 32px;
+  }
+  .lang-toggle img {
+      width: 20px;
+      height: 20px;
+  }
+}
+
+/* Скрытые элементы для доступности */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+}

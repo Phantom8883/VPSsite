@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <title>Вход</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <h1>Вход</h1>
+    <form method="post" action="{% url 'accounts:login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Войти</button>
+    </form>
+
+    <p>Нет аккаунта? <a href="{% url 'accounts:register' %}">Зарегистрироваться</a></p>
+
+    <!-- ✅ Подключаем Google ReCaptcha API -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</body>
+</html>

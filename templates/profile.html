@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE|default:'ru' }}" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}Кабинет пользователя{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+    <div class="top-controls">
+        <div class="lang-toggle">
+            <img src="{% static 'flags/ru.png' %}" alt="Русский" class="flag {% if request.LANGUAGE_CODE == 'ru' %}active{% endif %}" data-lang="ru" />
+            <img src="{% static 'flags/en.png' %}" alt="English" class="flag {% if request.LANGUAGE_CODE == 'en' %}active{% endif %}" data-lang="en" />
+        </div>
+        <div class="theme-toggle">
+            <button class="theme-btn" data-theme="dark" aria-label="Тёмная тема">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+            <button class="theme-btn" data-theme="system" aria-label="Системная тема">
+                <i class="fa-solid fa-desktop"></i>
+            </button>
+            <button class="theme-btn" data-theme="light" aria-label="Светлая тема">
+                <i class="fa-solid fa-sun"></i>
+            </button>
+        </div>
+        <div class="notification-icon" id="notificationBell">
+            <i class="fa-regular fa-bell"></i>
+            <div class="dot"></div>
+        </div>
+        <div class="settings-icon" id="settingsBtn">
+            <i class="fa-regular fa-cog"></i>
+        </div>
+    </div>
+
+    <div class="topbar-nav new-sidebar">
+        <div class="section tools">
+            <p data-section="vps"><i class="fa-regular fa-cloud"></i><span data-i18n="vps_button">VPS</span></p>
+            <p data-section="partners"><i class="fa-regular fa-handshake"></i><span data-i18n="partners_button">Партнерка</span></p>
+            <p data-section="rent"><i class="fa-regular fa-building"></i><span data-i18n="rent_button">Аренда</span></p>
+            <p data-section="support"><i class="fa-regular fa-headphones"></i><span data-i18n="support_button">Поддержка</span></p>
+            <p data-section="faq"><i class="fa-regular fa-question-circle"></i><span data-i18n="faq_button">FAQ</span></p>
+            <p data-section="settings"><i class="fa-regular fa-cog"></i><span data-i18n="settings">Настройки</span></p>
+        </div>
+    </div>
+
+    <!-- Панель с содержимым выбранного сервиса -->
+    <div class="sidebar-popup" id="panelPopup">
+        <div class="popup-header">
+            <h3 id="popupTitle">VPS</h3>
+            <button id="createVpsBtn" class="create-vps-btn">Создать VPS</button>
+        </div>
+        <div class="popup-description" id="popupDescription"></div>
+        <div class="popup-content vps-cards-container">
+            <!-- Здесь будут динамически добавляться карточки VPS -->
+        </div>
+    </div>
+
+    <div class="settings-popup" id="settingsModal"></div>
+
+    <!-- Блок с данными пользователя -->
+    <div class="user-info" style="padding: 1rem; margin-top: 1rem; border-top: 1px solid #ccc;">
+        <h2>Личный кабинет</h2>
+        <p>Привет, <strong>{{ user.username }}</strong>!</p>
+        <p>Email: {{ user.email }}</p>
+        <p><a href="{% url 'accounts:logout' %}">Выйти из аккаунта</a></p>
+    </div>
+
+    <!-- Скрытые элементы для доступности -->
+    <div class="visually-hidden">
+        <h2 id="notificationTitle">Уведомления</h2>
+        <h2 id="settingsTitle">Настройки</h2>
+    </div>
+
+    <script src="https://unpkg.com/i18next@21.6.14/dist/umd/i18next.min.js"></script>
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>

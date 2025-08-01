@@ -1,0 +1,10 @@
+<!-- templates/home.html -->
+<h1>Главная страница сайта</h1>
+
+{% if user.is_authenticated %}
+  <p>Добро пожаловать, {{ user.username }}!</p>
+  <a href="{% url 'accounts:logout' %}">Выйти</a>
+{% else %}
+  <p>Вы не вошли в систему.</p>
+  <a href="{% url 'accounts:login' %}">Войти</a>
+{% endif %}
