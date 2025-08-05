@@ -47,3 +47,19 @@ class TLUser(AbstractBaseUser, PermissionsMixin):
         # При необходимости можно добавить проверку что email или tel должно быть заполнено
         if not self.email and not self.tel:
             raise ValidationError("Должен быть указан email или телефон")
+
+
+
+# accounts/models.py (или settingsapp/models.py)
+from django.db import models
+
+class SiteSettings(models.Model):
+    allow_registration = models.BooleanField(default=True)
+    maintenance_mode = models.BooleanField(default=False)
+
+    def __str__(self):
+        return "Site Settings"
+
+    class Meta:
+        verbose_name = "Site Setting"
+        verbose_name_plural = "Site Settings"

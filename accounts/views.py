@@ -11,8 +11,16 @@ from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.decorators.http import require_http_methods
-
 from .forms import TLAuthEmailOrPhoneForm, SimpleSignupForm
+from .utils import is_registration_enabled
+from django.http import HttpResponseForbidden
+
+
+
+
+def register_view(request):
+    if not is_registration_enabled():
+        return HttpResponseForbidden("Регистрация временно отключена.")
 
 
 @require_http_methods(["GET", "POST"])

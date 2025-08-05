@@ -3,6 +3,12 @@ from django.contrib.auth.admin import UserAdmin
 from .models import TLUser
 from django.utils.translation import gettext_lazy as _
 
+from django.contrib import admin
+from .models import SiteSettings
+
+admin.site.register(SiteSettings)
+
+
 
 @admin.register(TLUser)
 class TLUserAdmin(UserAdmin):
