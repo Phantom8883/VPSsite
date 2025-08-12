@@ -1,5 +1,17 @@
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.urls import path
+from . import views_dev
+
+urlpatterns = [
+    # твои настоящие пути
+]
+
+if settings.DEBUG:
+    urlpatterns += [
+        path("dev/test-style/", views_dev.test_style),
+    ]
 
 
 urlpatterns = [
